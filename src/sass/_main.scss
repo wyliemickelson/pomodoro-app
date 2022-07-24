@@ -1,0 +1,39 @@
+@use '/src/sass/config' as *;
+
+.body-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.logo {
+  margin-bottom: 3.5rem;
+}
+
+.timer_types {
+  background-color: $clr-pm-darkest;
+  padding: 0.5rem;
+  border-radius: 5rem;
+  margin-bottom: 4rem;
+}
+
+.timer {
+  @include circle(300px, lighten($clr-pm-darkest, 10%));
+  margin-inline: auto;
+  margin-bottom: 10rem;
+
+  .timer--inner {
+    @include circle;
+  }
+
+  .timer_progress-bar {
+    @include circle(93%, $clr-accent-1);
+  }
+
+  .timer_content {
+    @include circle(95%);
+    flex-direction: column;
+    padding: 3rem;
+  }
+}

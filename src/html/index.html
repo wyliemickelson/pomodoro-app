@@ -14,89 +14,115 @@
     <title>Frontend Mentor | Pomodoro app</title>
   </head>
   <body>
-    <header>
-      <img src="/src/assets/logo.svg">
-    </header>
-    <body>
-      <section>
-        <button>pomodoro</button>
-        <button>short break</button>
-        <button>long break</button>
-      </section>
+    <div class="body-container">
+      <header>
+        <img class="logo" src="/src/assets/logo.svg" />
+      </header>
+      <main>
+        <section class="timer_types">
+          <button class="btn btn--selected">pomodoro</button>
+          <button class="btn">short break</button>
+          <button class="btn">long break</button>
+        </section>
 
-      <section class="timer">
+        <section class="timer circle">
+          <div class="circle timer--inner">
+            <div id="progressBar" class="timer_progress-bar circle">
+              <button class="circle timer_content">
+                <h1>25:00</h1>
+                <h3>PAUSE</h3>
+              </button>
+            </div>
+          </div>
+        </section>
 
-      </section>
+        <section class="settings hidden">
+          <div class="settings_header">
+            <h2>Settings</h2>
+            <img src="/src/assets/icon-close.svg" />
+          </div>
 
-      <section class="settings">
-        <div class="settings_header">
-          <h2>Settings</h2>
-          <img src="/src/assets/icon-close.svg">
-        </div>
+          <div class="option option--time">
+            <h4 class="option_title">TIME (MINUTES)</h4>
 
-        <div class="option option--time">
-          <p class="option_title">T I M E ( M I N U T E S)</p>
-
-          <div class="option_picker--inputs">
-            <div class="picker--input">
-              <p class="picker--input_title">pomodoro</p>
-              <div class="picker--input_data">
-                <input type="text" value="25">
-                <div class="input_data_increment">
-                  <img class="increment--up" src="/src/assets/icon-arrow-up.svg">
-                  <img class="increment--down" src="/src/assets/icon-arrow-down.svg">
+            <div class="option_picker--inputs">
+              <div class="picker--input">
+                <p class="picker--input_title">pomodoro</p>
+                <div class="picker--input_data">
+                  <input type="text" value="25" />
+                  <div class="input_data_increment">
+                    <img
+                      class="increment--up"
+                      src="/src/assets/icon-arrow-up.svg"
+                    />
+                    <img
+                      class="increment--down"
+                      src="/src/assets/icon-arrow-down.svg"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="picker--input">
-              <p class="picker--input_title">short break</p>
-              <div class="picker--input_data">
-                <input type="text" value="5">
-                <div class="input_data_increment">
-                  <img class="increment--up" src="/src/assets/icon-arrow-up.svg">
-                  <img class="increment--down" src="/src/assets/icon-arrow-down.svg">
+              <div class="picker--input">
+                <p class="picker--input_title">short break</p>
+                <div class="picker--input_data">
+                  <input type="text" value="5" />
+                  <div class="input_data_increment">
+                    <img
+                      class="increment--up"
+                      src="/src/assets/icon-arrow-up.svg"
+                    />
+                    <img
+                      class="increment--down"
+                      src="/src/assets/icon-arrow-down.svg"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="picker--input">
-              <p class="picker--input_title">long break</p>
-              <div class="picker--input_data">
-                <input type="text" value="15">
-                <div class="input_data_increment">
-                  <img class="increment--up" src="/src/assets/icon-arrow-up.svg">
-                  <img class="increment--down" src="/src/assets/icon-arrow-down.svg">
+              <div class="picker--input">
+                <p class="picker--input_title">long break</p>
+                <div class="picker--input_data">
+                  <input type="text" value="15" />
+                  <div class="input_data_increment">
+                    <img
+                      class="increment--up"
+                      src="/src/assets/icon-arrow-up.svg"
+                    />
+                    <img
+                      class="increment--down"
+                      src="/src/assets/icon-arrow-down.svg"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="option option--font">
-          <p class="option_title">F O N T</p>
-          <div class="option_picker--click">
-            <p>Aa</p>
-            <p>Aa</p>
-            <p>Aa</p>
+          <div class="option option--font">
+            <h4 class="option_title">FONT</h4>
+            <div class="option_picker--click">
+              <p>Aa</p>
+              <p>Aa</p>
+              <p>Aa</p>
+            </div>
           </div>
-        </div>
 
-        <div class="option option--color">
-          <p class="option_title">C O L O R</p>
-          <div class="option_picker--click">
-            <div></div>
-            <div></div>
-            <div></div>
+          <div class="option option--color">
+            <h4 class="option_title">COLOR</h4>
+            <div class="option_picker--click">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
           </div>
-        </div>
 
-        <button>Apply</button>
-        
-      </section>
-    </body>
-    <footer>
-      <img src="/src/assets/icon-settings.svg">
-    </footer>
+          <button>Apply</button>
+        </section>
+      </main>
+      <footer>
+        <img src="/src/assets/icon-settings.svg" />
+      </footer>
+    </div>
   </body>
 </html>
