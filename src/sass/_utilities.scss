@@ -1,0 +1,27 @@
+@use '/src/sass/config' as *;
+
+.hidden {
+  display: none;
+}
+
+.btn {
+  background-color: $clr-pm-darkest;
+  opacity: 40%;
+  padding: 1.5rem 2rem;
+  border-radius: 5rem;
+}
+
+.btn--selected {
+  opacity: 100%;
+  color: $clr-pm-darkest;
+  background-color: $clr-accent-1;
+}
+
+// .circle {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 90%;
+//   height: 90%;
+//   border-radius: 50%;
+// }
