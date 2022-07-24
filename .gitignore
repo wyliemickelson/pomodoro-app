@@ -19,3 +19,4 @@ design
 node_modules
 dist
 README-template.md
+.vscode
