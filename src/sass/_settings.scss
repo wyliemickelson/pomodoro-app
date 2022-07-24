@@ -1,0 +1,104 @@
+@use '/src/sass/config' as *;
+
+.settings {
+  padding: 1rem 1.5rem;
+  position: absolute;
+  width: 90%;
+  border-radius: 1rem;
+  color: $clr-pm-darkest;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $clr-nt-lightest;
+  z-index: 1;
+
+  * {
+    color: inherit;
+  }
+
+  .option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid $clr-nt-mid;
+    padding: 2rem 0;
+  }
+
+  .settings_header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .option_title {
+    margin-bottom: 2rem;
+  }
+
+  .option_picker--inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .picker--input {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .picker--input_data {
+      background-color: $clr-nt-light;
+      display: flex;
+      width: 50%;
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+      border-radius: 0.5rem;
+    }
+
+    .input_data_increment {
+      display: flex;
+      flex-direction: column;
+      max-width: fit-content;
+      gap: 0.75rem;
+
+      img {
+        max-width: 2rem;
+      }
+    }
+  }
+
+  .option_picker--click {
+    display: flex;
+    gap: 1rem;
+
+    * {
+      @include circle(4rem, $clr-nt-light);
+      font-size: 1.5rem;
+    }
+
+    .font--1 {
+      font-family: $ff-option-1;
+    }
+
+    .font--2 {
+      font-family: $ff-option-2;
+    }
+
+    .font--3 {
+      font-family: $ff-option-3;
+    }
+
+    .color--1 {
+      background-color: $clr-accent-1;
+    }
+
+    .color--2 {
+      background-color: $clr-accent-2;
+    }
+
+    .color--3 {
+      background-color: $clr-accent-3;
+    }
+  }
+
+
+}

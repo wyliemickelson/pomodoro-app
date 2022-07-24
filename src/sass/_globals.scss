@@ -20,6 +20,11 @@ button:hover {
   cursor: pointer;
 }
 
+input {
+  background-color: $clr-nt-light;
+  width: 100%;
+}
+
 h1, h2, h3, h4 {
   font-weight: $fw-bold;
 }
