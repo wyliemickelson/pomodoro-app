@@ -20,7 +20,7 @@
         <img class="logo" src="/src/assets/logo.svg" />
       </header>
       <main>
-        <section class="timer_types">
+        <section id="timerChoices" class="timer_types">
           <button class="btn btn--selected">pomodoro</button>
           <button class="btn">short break</button>
           <button class="btn">long break</button>
@@ -50,7 +50,7 @@
               <div class="sub-option">
                 <p class="sub-option_title">pomodoro</p>
                 <div class="sub-option_data">
-                  <input type="text" value="25" />
+                  <input id="pomodoroTimerLengthInput" type="text" value="25" />
                   <div class="input_data_increment">
                     <button>
                       <img
@@ -71,7 +71,7 @@
               <div class="sub-option">
                 <p class="sub-option_title">short break</p>
                 <div class="sub-option_data">
-                  <input type="text" value="5" />
+                  <input id="shortBreakLengthInput" type="text" value="5" />
                   <div class="input_data_increment">
                     <button>
                       <img
@@ -92,7 +92,7 @@
               <div class="sub-option">
                 <p class="sub-option_title">long break</p>
                 <div class="sub-option_data">
-                  <input type="text" value="15" />
+                  <input id="longBreakLengthInput" type="text" value="15" />
                   <div class="input_data_increment">
                     <button>
                       <img
@@ -114,7 +114,7 @@
 
           <div class="option option--font">
             <h4 class="option_title">FONT</h4>
-            <div class="option_choices-container">
+            <div id="fontChoices" class="option_choices-container">
               <button class="option_choice font--selected">
                 <div class="choice_hover option--font font--1">Aa</div>
               </button>
@@ -129,7 +129,7 @@
 
           <div class="option option--color">
             <h4 class="option_title">COLOR</h4>
-            <div class="option_choices-container">
+            <div id="colorChoices" class="option_choices-container">
               <button class="option_choice color--1 color--selected">
                 <div class="choice_hover">
                   <svg

@@ -1,3 +1,5 @@
+import { settings } from './settings';
+
 export let states = {
 	timer: {
 		type: 'pomodoro',
@@ -7,10 +9,11 @@ export let states = {
 	},
 
 	settings: {
-		shortBreak: 300,
-		longBreak: 900,
+		pomodoroLength: 1500,
+		shortBreakLength: 300,
+		longBreakLength: 900,
 		accentColor: 'hsl(0deg, 91%, 71%)',
-		currentFont: '"Kumbh Sans", sans-serif',
+		font: '"Kumbh Sans", sans-serif',
 	},
 
 	setAccentColor: (color) => {
@@ -22,6 +25,8 @@ export let states = {
 	},
 
 	update: () => {
-
+		settings.update();
+		states.setAccentColor();
+		states.setFont();
 	},
 };
