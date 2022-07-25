@@ -92,14 +92,19 @@
       }
     }
 
-    .choice--selected {
-      background-color: $clr-pm-darkest;
-      color: $clr-nt-lightest;
+    .color--selected {
+      pointer-events: none;
 
       .checkmark {
         width: 4rem;
         display: initial;
       }
+    }
+
+    .font--selected {
+      background-color: $clr-pm-darkest;
+      color: $clr-nt-lightest;
+      pointer-events: none;
     }
 
     .font--1 {
@@ -133,7 +138,7 @@
   }
 
   .btn--apply {
-    background-color: $clr-accent-1;
+    background-color: var(--clr-accent-current);
     padding: 1.5rem 3rem;
     font-size: 1.3rem;
     color: $clr-nt-lightest;
@@ -144,6 +149,6 @@
   }
 
   .btn--apply:hover {
-    background-color: lighten($clr-accent-1, 5%);
+    filter: brightness(85%);
   }
 }

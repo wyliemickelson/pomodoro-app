@@ -1,4 +1,4 @@
-@use '/src/sass/config' as *;
+@use "/src/sass/config" as *;
 
 body {
   background-color: $clr-pm-dark;
@@ -29,7 +29,10 @@ input {
   width: 100%;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: $fw-bold;
 }
 
@@ -47,12 +50,12 @@ h3 {
   font-size: 16px;
   line-height: 19px;
   letter-spacing: 15px;
-  margin-right: -15px
+  margin-right: -15px;
 }
- 
+
 h4 {
   font-size: 13px;
   line-height: 16px;
   letter-spacing: 5px;
-  margin-right: -5px
+  margin-right: -5px;
 }

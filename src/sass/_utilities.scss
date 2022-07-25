@@ -1,4 +1,4 @@
-@use '/src/sass/config' as *;
+@use "/src/sass/config" as *;
 
 .hidden {
   display: none;
@@ -6,12 +6,12 @@
 
 .btn {
   background-color: $clr-pm-darkest;
-  padding: 1.5rem 2rem;
+  padding: 1.5em 2em;
   border-radius: 5rem;
 }
 
 .btn--selected {
   opacity: 100%;
   color: $clr-pm-darkest;
-  background-color: $clr-accent-1;
+  background-color: var(--clr-accent-current);
 }

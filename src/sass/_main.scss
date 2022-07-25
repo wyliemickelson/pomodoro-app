@@ -1,10 +1,11 @@
-@use '/src/sass/config' as *;
+@use "/src/sass/config" as *;
 
 .body-container {
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem 0;
+  margin: 3rem auto;
 }
 
 .logo {
@@ -16,13 +17,22 @@
   padding: 0.5rem;
   border-radius: 5rem;
   margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
 
   .btn {
     opacity: 40%;
+    white-space: nowrap;
+  }
+
+  .btn:hover {
+    color: $clr-nt-mid;
+    opacity: 100%;
   }
 
   .btn--selected {
     opacity: 100%;
+    pointer-events: none;
   }
 }
 
@@ -36,12 +46,18 @@
   }
 
   .timer_progress-bar {
-    @include circle(93%, $clr-accent-1);
+    @include circle(93%, var(--clr-accent-current));
   }
 
   .timer_content {
     @include circle(95%);
     flex-direction: column;
-    padding: 3rem;
+  }
+}
+
+.btn--settings:hover {
+  path {
+    opacity: 100%;
+    fill: var(--clr-accent-current);
   }
 }

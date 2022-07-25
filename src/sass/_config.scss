@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Space+Mono:wght@400;700&display=swap");
 
+:root {
+  --clr-accent-current: hsl(0deg, 91%, 71%);
+}
+
 // COLORS
 $clr-pm-darkest: hsl(234deg, 39%, 14%);
 $clr-pm-dark: hsl(235deg, 35%, 18%);
@@ -20,7 +24,11 @@ $ff-option-3: "Space Mono", monospace;
 $fw-reg: 400;
 $fw-bold: 700;
 
-@mixin circle($size:90%, $bg-clr:$clr-pm-darkest) {
+@function getAccentColor() {
+  @return var(--clr-accent-current);
+}
+
+@mixin circle($size: 90%, $bg-clr: $clr-pm-darkest) {
   display: flex;
   align-items: center;
   justify-content: center;
