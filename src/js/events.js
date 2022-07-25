@@ -1,6 +1,7 @@
 import { pageManipulation } from './pageManipulation';
 import { timer } from './timer';
 import { settings } from './settings';
+import { states } from './states';
 
 const timerBtn = document.getElementById('timerBtn');
 const settingsApplyBtn = document.getElementById('settingsApplyBtn');
@@ -8,19 +9,30 @@ const showSettingsBtn = document.getElementById('showSettingsBtn');
 const exitSettingsBtn = document.getElementById('exitSettingsBtn');
 
 export const events = {
-	setUpListeners: () => {
-		settingsApplyBtn.addEventListener('click', events.handleApplySettings);
-		showSettingsBtn.addEventListener('click', events.handleToggleSettings);
-		exitSettingsBtn.addEventListener('click', events.handleToggleSettings);
-		timerBtn.addEventListener('click', events.handleTimerBtn);
+	setUpListeners: function() {
+		settingsApplyBtn.addEventListener('click', this.handleApplySettings);
+		showSettingsBtn.addEventListener('click', this.handleToggleSettings);
+		exitSettingsBtn.addEventListener('click', this.handleToggleSettings);
+		timerBtn.addEventListener('click', this.handleTimerBtn);
+		this.addChoiceListeners(settings.fontChoices);
+		this.addChoiceListeners(settings.colorChoices);
+		this.addChoiceListeners(settings.timerChoices);
+	},
+
+	addChoiceListeners: (container) => {
+		Array.from(container.children).forEach(choice => choice.addEventListener('click', events.handleChoiceChange));
 	},
 
 	handleApplySettings: () => {
 		pageManipulation.toggleSettings();
-		settings.update();
+		states.update();
 	},
 
 	handleToggleSettings: () => { pageManipulation.toggleSettings(); },
 
-	handleTimerBtn: () => { timer.startTimer(); }
+	handleTimerBtn: () => { timer.startTimer(); },
+
+	handleChoiceChange: function() {
+		pageManipulation.changeSelectedChoice(this);
+	}
 };

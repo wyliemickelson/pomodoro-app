@@ -16,12 +16,12 @@ export let states = {
 		font: '"Kumbh Sans", sans-serif',
 	},
 
-	setAccentColor: (color) => {
-		document.documentElement.style.setProperty('--clr-accent-current', `${color}`);
+	setAccentColor: () => {
+		document.documentElement.style.setProperty('--clr-accent-current', `${states.settings.accentColor}`);
 	},
 
-	setFont: (font) => {
-		document.documentElement.style.setProperty('--font-current', `${font}`);
+	setFont: () => {
+		document.documentElement.style.setProperty('--font-current', `${states.settings.font}`);
 	},
 
 	update: () => {
