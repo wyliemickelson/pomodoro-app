@@ -30,9 +30,17 @@ export const events = {
 
 	handleToggleSettings: () => { pageManipulation.toggleSettings(); },
 
-	handleTimerBtn: () => { timer.startTimer(); },
+	handleTimerBtn: () => {
+		if (states.timer.running) {
+			clearInterval(window.mainTimer);
+			timer.toggleOn();
+		} else {
+			timer.startTimer();
+		}
+	},
 
 	handleChoiceChange: function() {
 		pageManipulation.changeSelectedChoice(this);
+		if (this.parentElement.id === 'timerChoices') states.update();
 	}
 };

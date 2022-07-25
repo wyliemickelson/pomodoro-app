@@ -4,7 +4,8 @@ export let states = {
 	timer: {
 		type: 'pomodoro',
 		timeLeft: 1500,
-		paused: false,
+		notStarted: true,
+		running: false,
 		completed: false,
 	},
 

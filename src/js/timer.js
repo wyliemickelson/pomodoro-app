@@ -1,28 +1,43 @@
+import { pageManipulation } from './pageManipulation';
 import { states } from './states';
 
 const progressBar = document.getElementById('progressBar');
 
 export const timer = {
 
-	handleTimerBtn: () => {
-		timer.startTimer();
-	},
-
 	startTimer: () => {
+		timer.toggleOn();
+
+		let endValue = states.settings.pomodoroLength;
+		let startFrom = endValue - states.timer.timeLeft;
+
 		let currentAccentColor = states.settings.accentColor;
-		let progressValue = 0;
-		let progressEndValue = 100;
+		let progressValue = startFrom;
+		let progressEndValue = endValue;
 		let speed = 1000;
 
-		let progress = setInterval(() => {
+		window.mainTimer = setInterval(() => {
 			progressValue++;
+			states.timer.timeLeft--;
+
+			pageManipulation.updateCurrentTime();
+
 			progressBar.style.background = `conic-gradient(
-        ${currentAccentColor} ${progressValue * 3.6}deg,
-        hsl(234deg, 39%, 14%) ${progressValue * 3.6}deg
+        ${currentAccentColor} ${progressValue * (360 / progressEndValue)}deg,
+        hsl(234deg, 39%, 14%) ${progressValue * (360 / progressEndValue)}deg
       )`;
 			if (progressValue == progressEndValue) {
-				clearInterval(progress);
+				timer.stopTimer();
 			}
 		}, speed);
+	},
+
+	toggleOn: () => {
+		states.timer.running = !states.timer.running;
+	},
+
+	stopTimer: () => {
+		clearInterval(window.mainTimer);
+		timer.toggleOn();
 	}
 };

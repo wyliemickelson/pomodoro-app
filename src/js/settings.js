@@ -20,12 +20,8 @@ export const settings = {
 		let newFont = getComputedStyle(this.getSelectedChoice(this.fontChoices).querySelector('div')).fontFamily;
 		states.settings.font = newFont;
 
-
-		// maybe delete this later
 		let newTimerType = this.getSelectedChoice(this.timerChoices).textContent;
 		states.timer.type = newTimerType;
-
-		console.log(states.settings);
 	},
 
 	getSelectedChoice: (container) => {
