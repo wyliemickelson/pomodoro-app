@@ -4,6 +4,7 @@
   @include modal;
   padding: 1rem 1.5rem;
   width: 90%;
+  max-width: 550px;
   border-radius: 1rem;
   color: $clr-pm-darkest;
   background-color: $clr-nt-lightest;
@@ -45,15 +46,18 @@
       display: flex;
       background-color: $clr-nt-light;
       gap: 1rem;
-      padding: 0.5rem 1rem;
+      padding: 1rem;
       border-radius: 0.5rem;
+
+      input {
+        padding-left: 0.5rem;
+      }
     }
 
     .input_data_increment {
       display: flex;
       flex-direction: column;
       max-width: fit-content;
-      gap: 0.75rem;
 
       img {
         max-width: 2rem;

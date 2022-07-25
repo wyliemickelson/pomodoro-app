@@ -14,13 +14,14 @@
 
 .timer_types {
   background-color: $clr-pm-darkest;
-  padding: 0.5rem;
+  padding: 0.75rem;
   border-radius: 5rem;
   margin-bottom: 4rem;
   display: flex;
   align-items: center;
 
   .btn {
+    width: 33.33333333%;
     opacity: 40%;
     white-space: nowrap;
   }

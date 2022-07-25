@@ -1,0 +1,48 @@
+@media (min-width: 625px) {
+
+  .timer {
+    width: 375px;
+    height: 375px;
+    margin-bottom: 5rem;
+
+    .timer_content {
+      h1 {
+        font-size: 90px;
+      }
+    }
+  }
+
+  .settings {
+    padding: 1rem 3rem;
+
+    .option {
+      flex-direction: row;
+      justify-content: space-between;
+
+      .option_title {
+        margin-bottom: 0;
+      }
+    }
+
+    .option--minutes {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .sub-options-container {
+      flex-direction: row;
+      gap: 1.5rem;
+
+      .sub-option {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .sub-option_data {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
