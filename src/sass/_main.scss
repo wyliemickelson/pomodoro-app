@@ -16,6 +16,14 @@
   padding: 0.5rem;
   border-radius: 5rem;
   margin-bottom: 4rem;
+
+  .btn {
+    opacity: 40%;
+  }
+
+  .btn--selected {
+    opacity: 100%;
+  }
 }
 
 .timer {

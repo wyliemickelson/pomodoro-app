@@ -26,6 +26,7 @@
   }
 
   .settings_header {
+    padding-inline: 1rem;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -75,6 +76,16 @@
       font-size: 1.5rem;
     }
 
+    svg {
+      display: none;
+      background-color: inherit;
+      max-width: 1.5rem;
+    }
+
+    .selected svg {
+      display: initial;
+    }
+
     .font--1 {
       font-family: $ff-option-1;
     }
@@ -100,5 +111,20 @@
     }
   }
 
+  .option--color {
+    border-bottom: none;
+    margin-bottom: 3rem;
+  }
+
+  .btn--apply {
+    background-color: $clr-accent-1;
+    padding: 1.5rem 3rem;
+    font-size: 1.3rem;
+    color: $clr-nt-lightest;
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
 }
