@@ -8,7 +8,7 @@ export const timer = {
 	startTimer: () => {
 		timer.toggleOn();
 
-		let endValue = states.settings.pomodoroLength;
+		let endValue = states.timer.type.length;
 		let startFrom = endValue - states.timer.timeLeft;
 
 		let currentAccentColor = states.settings.accentColor;

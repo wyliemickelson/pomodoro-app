@@ -1,3 +1,4 @@
+import { pageManipulation } from './pageManipulation';
 import { states } from './states';
 
 const pomodoroTimerLengthInput = document.getElementById('pomodoroTimerLengthInput');
@@ -10,9 +11,9 @@ export const settings = {
 	timerChoices: document.getElementById('timerChoices'),
 
 	update: function() {
-		states.settings.pomodoroLength = minToSec(pomodoroTimerLengthInput.value);
-		states.settings.shortBreakLength = minToSec(shortBreakLengthInput.value);
-		states.settings.longBreakLength = minToSec(longBreakLengthInput.value);
+		states.settings.lengths.pomodoro = minToSec(pomodoroTimerLengthInput.value);
+		states.settings.lengths['short break'] = minToSec(shortBreakLengthInput.value);
+		states.settings.lengths['long break'] = minToSec(longBreakLengthInput.value);
 		
 		let newAccentColor = getComputedStyle(this.getSelectedChoice(this.colorChoices)).backgroundColor;
 		states.settings.accentColor = newAccentColor;
@@ -21,7 +22,14 @@ export const settings = {
 		states.settings.font = newFont;
 
 		let newTimerType = this.getSelectedChoice(this.timerChoices).textContent;
-		states.timer.type = newTimerType;
+		states.timer.type.name = newTimerType;
+		states.timer.type.length = states.settings.lengths[newTimerType];
+		states.timer.timeLeft = states.settings.lengths[newTimerType];
+
+		pageManipulation.updateCurrentTime();
+		pageManipulation.resetProgressBar();
+
+		console.log(states);
 	},
 
 	getSelectedChoice: (container) => {
