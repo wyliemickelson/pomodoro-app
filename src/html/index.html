@@ -14,6 +14,7 @@
     <title>Frontend Mentor | Pomodoro app</title>
   </head>
   <body>
+    <div id="pageMask" class="page-mask hidden"></div>
     <div class="body-container">
       <header>
         <img class="logo" src="/src/assets/logo.svg" />
@@ -36,10 +37,10 @@
           </div>
         </section>
 
-        <section class="settings">
+        <section id="settings" class="settings hidden">
           <div class="settings_header">
             <h2>Settings</h2>
-            <button><img src="/src/assets/icon-close.svg" /></button>
+            <button id="exitSettingsBtn"><img src="/src/assets/icon-close.svg" /></button>
           </div>
 
           <div class="option option--minutes">
@@ -174,11 +175,11 @@
             </div>
           </div>
 
-          <button class="btn btn--apply">Apply</button>
+          <button id="settingsApplyBtn" class="btn btn--apply">Apply</button>
         </section>
       </main>
       <footer>
-        <button>
+        <button id="showSettingsBtn">
           <svg
             class="btn--settings"
             xmlns="http://www.w3.org/2000/svg"

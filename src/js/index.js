@@ -1,14 +1,15 @@
 import '/src/sass/index.scss';
+import { events } from './events';
 
 const timerBtn = document.getElementById('timerBtn');
 
 timerBtn.addEventListener('click', handleTimerBtn);
 
-const ACCENT_COLORS = [
-	'hsl(0deg, 91%, 71%)', 
-	'hsl(182deg, 91%, 71%)', 
-	'hsl(284deg, 89%, 74%)'
-];
+// const ACCENT_COLORS = [
+// 	'hsl(0deg, 91%, 71%)', 
+// 	'hsl(182deg, 91%, 71%)', 
+// 	'hsl(284deg, 89%, 74%)'
+// ];
 
 const progressBar = document.getElementById('progressBar');
 
@@ -38,3 +39,5 @@ function startTimer() {
 		}
 	}, speed);
 }
+
+events.setUpListeners();
