@@ -24,6 +24,8 @@
     width: 33.33333333%;
     opacity: 40%;
     white-space: nowrap;
+    display: flex;
+    justify-content: center;
   }
 
   .btn:hover {
@@ -41,6 +43,13 @@
   @include circle(300px, lighten($clr-pm-darkest, 10%));
   margin-inline: auto;
   margin-bottom: 10rem;
+  background: #091022;
+  background: -moz-linear-gradient(-45deg, #091022 0%, #2D3367 81%, #30376F 100%);
+  background: -webkit-linear-gradient(-45deg, #091022 0%, #2D3367 81%, #30376F 100%);
+  background: linear-gradient(135deg, #091022 0%, #2D3367 81%, #30376F 100%);
+
+  box-shadow: -10px -20px 50px 10px rgba(74, 101, 224, 0.2), 10px 20px 50px 10px rgba(5, 5, 10, 0.75);
+  
 
   .timer--inner {
     @include circle;
