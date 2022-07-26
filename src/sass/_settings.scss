@@ -35,8 +35,11 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 80%;
+    max-width: 300px;
 
     .sub-option {
+      position: relative;
       @include flex-row;
       justify-content: space-between;
     }
@@ -45,12 +48,11 @@
       width: 50%;
       display: flex;
       background-color: $clr-nt-light;
-      gap: 1rem;
-      padding: 1rem;
       border-radius: 0.5rem;
 
       input {
-        padding-left: 0.5rem;
+        margin: 0.75rem;
+        padding: 0.5rem;
       }
     }
 
@@ -58,9 +60,25 @@
       display: flex;
       flex-direction: column;
       max-width: fit-content;
+      justify-content: center;
 
-      img {
-        max-width: 2rem;
+      button {
+        padding: 0 1.5rem;
+      }
+
+      .increment--up {
+        padding-top: 0.5rem;
+      }
+
+      .increment--down {
+        padding-bottom: 0.5rem;
+      }
+
+      button:hover {
+        svg path {
+          stroke: var(--clr-accent-current);
+          stroke-opacity: 100%;
+        }
       }
     }
   }

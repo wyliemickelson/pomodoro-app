@@ -21,7 +21,7 @@
   align-items: center;
 
   .btn {
-    width: 33.33333333%;
+    width: calc(100% / 3);
     opacity: 40%;
     white-space: nowrap;
     display: flex;

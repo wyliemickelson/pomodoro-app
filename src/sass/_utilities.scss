@@ -25,3 +25,11 @@
   left: 0;
   z-index: 1;
 }
+
+#error-message {
+  padding-top: 2rem;
+  text-align: center;
+  justify-self: center;
+  right: -50px;
+  color: $clr-accent-1;
+}

@@ -23,7 +23,6 @@ export const settings = {
 
 		states.settings = newSettings;
 		this.updateTimerType();
-		console.log(states);
 	},
 
 	updateTimerType: () => {

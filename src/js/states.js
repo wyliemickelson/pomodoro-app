@@ -30,7 +30,6 @@ export const states = {
 
 	setDefault: () => {
 		states.timer.timeLeft = states.timer.type.length;
-		console.log(states.timer.timeLeft);
 		states.timer.running = false;
 		states.timer.completed = false;
 	}

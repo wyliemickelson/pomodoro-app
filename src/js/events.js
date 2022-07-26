@@ -8,6 +8,8 @@ const timerResetBtn = document.getElementById('timerResetBtn');
 const settingsApplyBtn = document.getElementById('settingsApplyBtn');
 const showSettingsBtn = document.getElementById('showSettingsBtn');
 const exitSettingsBtn = document.getElementById('exitSettingsBtn');
+const incrementBtns = Array.from(document.querySelectorAll('.increment'));
+const timeInputs = Array.from(document.querySelectorAll('.timeInput'));
 
 export const events = {
 	setUpListeners: function() {
@@ -19,6 +21,9 @@ export const events = {
 		this.addChoiceListeners(settings.fontChoices);
 		this.addChoiceListeners(settings.colorChoices);
 		this.addChoiceListeners(settings.timerChoices);
+
+		timeInputs.forEach(input => input.addEventListener('change', this.handlers.timeInput));
+		incrementBtns.forEach(btn => btn.addEventListener('click', this.handlers.incrementInputValue));
 	},
 
 	addChoiceListeners: (container) => {
@@ -50,5 +55,26 @@ export const events = {
 				settings.updateTimerType();
 			}
 		},
+
+		incrementInputValue: function() {
+			let numberInput = this.closest('.sub-option_data').querySelector('input');
+			let min = 1;
+			let max = Number(numberInput.max);
+			let currentValue = Number(numberInput.value);
+			let step = Number(numberInput.step);
+
+			if (this.classList.contains('increment--down')) step *= -1;
+			let newValue = currentValue + step;
+
+			if (newValue >= min && newValue <= max) numberInput.value = currentValue + step;
+		},
+
+		timeInput: function() {
+			let currentValue = this.value;
+			let min = 1;
+			let max = Number(this.max);
+			if (currentValue < min) this.value = min;
+			if (currentValue > max) this.value = max;
+		}
 	},
 };
