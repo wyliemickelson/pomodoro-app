@@ -1,3 +1,4 @@
+import { pageManipulation } from './pageManipulation';
 import { settings } from './settings';
 
 export let states = {
@@ -7,14 +8,13 @@ export let states = {
 			length: '1500'
 		},
 		timeLeft: 1500,
-		notStarted: true,
 		running: false,
 		completed: false,
 	},
 
 	settings: {
 		lengths: {
-			pomodoro: 1500,
+			'pomodoro': 1500,
 			'short break': 300,
 			'long break': 900
 		},
@@ -22,17 +22,9 @@ export let states = {
 		font: '"Kumbh Sans", sans-serif',
 	},
 
-	setAccentColor: () => {
-		document.documentElement.style.setProperty('--clr-accent-current', `${states.settings.accentColor}`);
-	},
-
-	setFont: () => {
-		document.documentElement.style.setProperty('--font-current', `${states.settings.font}`);
-	},
-
 	update: () => {
-		settings.update();
-		states.setAccentColor();
-		states.setFont();
+		settings.updateSettings();
+		pageManipulation.setAccentColor();
+		pageManipulation.setFont();
 	},
 };

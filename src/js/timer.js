@@ -1,43 +1,52 @@
 import { pageManipulation } from './pageManipulation';
 import { states } from './states';
 
-const progressBar = document.getElementById('progressBar');
-
 export const timer = {
 
-	startTimer: () => {
-		timer.toggleOn();
+	start: () => {
+		timer.toggleRunning();
+
+		pageManipulation.setTimerText('PAUSE');
 
 		let endValue = states.timer.type.length;
-		let startFrom = endValue - states.timer.timeLeft;
+		let startValue = endValue - states.timer.timeLeft;
 
-		let currentAccentColor = states.settings.accentColor;
-		let progressValue = startFrom;
-		let progressEndValue = endValue;
+		let progressValue = startValue;
+
 		let speed = 1000;
 
 		window.mainTimer = setInterval(() => {
 			progressValue++;
 			states.timer.timeLeft--;
 
-			pageManipulation.updateCurrentTime();
+			pageManipulation.setCurrentTime();
+			pageManipulation.updateProgressBar(progressValue, endValue);
 
-			progressBar.style.background = `conic-gradient(
-        ${currentAccentColor} ${progressValue * (360 / progressEndValue)}deg,
-        hsl(234deg, 39%, 14%) ${progressValue * (360 / progressEndValue)}deg
-      )`;
-			if (progressValue == progressEndValue) {
-				timer.stopTimer();
+			if (progressValue == endValue) {
+				timer.stop();
 			}
 		}, speed);
 	},
 
-	toggleOn: () => {
+	toggleRunning: () => {
 		states.timer.running = !states.timer.running;
 	},
 
-	stopTimer: () => {
+	stop: () => {
 		clearInterval(window.mainTimer);
-		timer.toggleOn();
+	},
+
+	reset: () => {
+		timer.stop();
+		states.timer.running = false;
+		pageManipulation.setTimerText('START');
+		pageManipulation.setCurrentTime();
+		pageManipulation.resetProgressBar();
+	},
+
+	pause: () => {
+		timer.stop();
+		timer.toggleRunning();
+		pageManipulation.setTimerText('RESUME');
 	}
 };

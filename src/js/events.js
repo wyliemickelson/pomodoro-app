@@ -10,37 +10,40 @@ const exitSettingsBtn = document.getElementById('exitSettingsBtn');
 
 export const events = {
 	setUpListeners: function() {
-		settingsApplyBtn.addEventListener('click', this.handleApplySettings);
-		showSettingsBtn.addEventListener('click', this.handleToggleSettings);
-		exitSettingsBtn.addEventListener('click', this.handleToggleSettings);
-		timerBtn.addEventListener('click', this.handleTimerBtn);
+		settingsApplyBtn.addEventListener('click', this.handlers.applySettings);
+		showSettingsBtn.addEventListener('click', pageManipulation.toggleSettings);
+		exitSettingsBtn.addEventListener('click', pageManipulation.toggleSettings);
+		timerBtn.addEventListener('click', this.handlers.timerBtn);
 		this.addChoiceListeners(settings.fontChoices);
 		this.addChoiceListeners(settings.colorChoices);
 		this.addChoiceListeners(settings.timerChoices);
 	},
 
 	addChoiceListeners: (container) => {
-		Array.from(container.children).forEach(choice => choice.addEventListener('click', events.handleChoiceChange));
+		const choices = Array.from(container.children);
+		choices.forEach(choice => choice.addEventListener('click', events.handlers.choiceChange));
 	},
 
-	handleApplySettings: () => {
-		pageManipulation.toggleSettings();
-		states.update();
+	handlers: {
+		applySettings: () => {
+			pageManipulation.toggleSettings();
+			states.update();
+		},
+  
+		timerBtn: () => {
+			if (states.timer.running) {
+				timer.pause();
+			} else {
+				timer.start();
+			}
+		},
+  
+		choiceChange: function() {
+			pageManipulation.setSelectedChoice(this);
+			if (this.parentElement.id === 'timerChoices') {
+				settings.updateTimerType();
+				timer.reset();
+			}
+		},
 	},
-
-	handleToggleSettings: () => { pageManipulation.toggleSettings(); },
-
-	handleTimerBtn: () => {
-		if (states.timer.running) {
-			clearInterval(window.mainTimer);
-			timer.toggleOn();
-		} else {
-			timer.startTimer();
-		}
-	},
-
-	handleChoiceChange: function() {
-		pageManipulation.changeSelectedChoice(this);
-		if (this.parentElement.id === 'timerChoices') states.update();
-	}
 };
