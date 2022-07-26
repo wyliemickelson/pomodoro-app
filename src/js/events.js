@@ -4,6 +4,7 @@ import { settings } from './settings';
 import { states } from './states';
 
 const timerBtn = document.getElementById('timerBtn');
+const timerResetBtn = document.getElementById('timerResetBtn');
 const settingsApplyBtn = document.getElementById('settingsApplyBtn');
 const showSettingsBtn = document.getElementById('showSettingsBtn');
 const exitSettingsBtn = document.getElementById('exitSettingsBtn');
@@ -14,6 +15,7 @@ export const events = {
 		showSettingsBtn.addEventListener('click', pageManipulation.toggleSettings);
 		exitSettingsBtn.addEventListener('click', pageManipulation.toggleSettings);
 		timerBtn.addEventListener('click', this.handlers.timerBtn);
+		timerResetBtn.addEventListener('click', timer.reset);
 		this.addChoiceListeners(settings.fontChoices);
 		this.addChoiceListeners(settings.colorChoices);
 		this.addChoiceListeners(settings.timerChoices);
@@ -46,7 +48,6 @@ export const events = {
 			pageManipulation.setSelectedChoice(this);
 			if (this.parentElement.id === 'timerChoices') {
 				settings.updateTimerType();
-				timer.reset();
 			}
 		},
 	},

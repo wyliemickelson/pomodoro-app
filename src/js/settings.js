@@ -11,7 +11,6 @@ export const settings = {
 	timerChoices: document.getElementById('timerChoices'),
 
 	updateSettings: function() {
-		let oldSettings = states.settings;
 		let newSettings = {
 			lengths: {
 				'pomodoro': minToSec(pomodoroTimerLengthInput.value),
@@ -22,15 +21,13 @@ export const settings = {
 			font: getComputedStyle(this.getSelectedChoice(this.fontChoices).querySelector('div')).fontFamily,
 		};
 
-		Object.keys(newSettings).forEach(key => {
-			if (newSettings[key] !== oldSettings[key]) {
-				states.settings[key] = newSettings[key];
-			}
-		});
+		states.settings = newSettings;
+		this.updateTimerType();
+		console.log(states);
 	},
 
 	updateTimerType: () => {
-		let newTimerType = settings.getSelectedChoice(settings.timerChoices).textContent;
+		const newTimerType = settings.getSelectedChoice(settings.timerChoices).textContent;
 		states.timer.type.name = newTimerType;
 		states.timer.type.length = states.settings.lengths[newTimerType];
 		states.timer.timeLeft = states.settings.lengths[newTimerType];

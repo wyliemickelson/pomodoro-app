@@ -18,7 +18,7 @@ export const pageManipulation = {
 	},
 
 	resetProgressBar: () => {
-		progressBar.style.background = states.settings.accentColor;
+		progressBar.style.background = 'var(--clr-accent-current)';
 	},
 
 	updateProgressBar: (progressValue, endValue) => {

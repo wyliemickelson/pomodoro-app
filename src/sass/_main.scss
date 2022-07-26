@@ -48,6 +48,7 @@
 
   .timer_progress-bar {
     @include circle(93%, var(--clr-accent-current));
+    background: var(--clr-accent-current);
   }
 
   .timer_content {
@@ -56,9 +57,21 @@
   }
 }
 
-.btn--settings:hover {
+footer {
+  display: flex;
+  gap: 2rem;
+
+  .btn--reset {
+    padding: 1rem 0.5rem;
+  }
+}
+
+.btn--footer:hover {
+  color: var(--clr-accent-current);
+
   path {
     opacity: 100%;
     fill: var(--clr-accent-current);
   }
+
 }
