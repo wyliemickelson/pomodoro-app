@@ -1,7 +1,7 @@
 import { pageManipulation } from './pageManipulation';
 import { settings } from './settings';
 
-export let states = {
+export const states = {
 	timer: {
 		type: {
 			name: 'pomodoro',
@@ -18,7 +18,7 @@ export let states = {
 			'short break': 300,
 			'long break': 900
 		},
-		accentColor: 'hsl(0deg, 91%, 71%)',
+		accentColor: 'rgb(248, 114, 114)',
 		font: '"Kumbh Sans", sans-serif',
 	},
 
@@ -27,4 +27,10 @@ export let states = {
 		pageManipulation.setAccentColor();
 		pageManipulation.setFont();
 	},
+
+	setDefault: () => {
+		states.timer.timeLeft = states.timer.type.length;
+		states.timer.running = false;
+		states.timer.completed = false;
+	}
 };

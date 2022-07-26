@@ -4,32 +4,33 @@ import { states } from './states';
 export const timer = {
 
 	start: () => {
-		timer.toggleRunning();
+		states.timer.running = true;
 
 		pageManipulation.setTimerText('PAUSE');
 
-		let endValue = states.timer.type.length;
-		let startValue = endValue - states.timer.timeLeft;
-
-		let progressValue = startValue;
-
-		let speed = 1000;
+		let endValueSeconds = states.timer.type.length;
+		let startValueSeconds = (endValueSeconds - states.timer.timeLeft);
+		let progressValue = startValueSeconds * 100;
+		let progressEndValue = endValueSeconds * 100;
+		let speed = 10;
+		let isSecond = true;
 
 		window.mainTimer = setInterval(() => {
 			progressValue++;
-			states.timer.timeLeft--;
+			isSecond = progressValue % 100 == 0;
+
+			if (isSecond) states.timer.timeLeft--;
 
 			pageManipulation.setCurrentTime();
-			pageManipulation.updateProgressBar(progressValue, endValue);
+			pageManipulation.updateProgressBar(progressValue, progressEndValue);
 
-			if (progressValue == endValue) {
+			if (progressValue == progressEndValue) {
 				timer.stop();
+				states.timer.completed = true;
+				states.timer.running = false;
+				pageManipulation.setTimerText('RESTART');
 			}
 		}, speed);
-	},
-
-	toggleRunning: () => {
-		states.timer.running = !states.timer.running;
 	},
 
 	stop: () => {
@@ -38,7 +39,7 @@ export const timer = {
 
 	reset: () => {
 		timer.stop();
-		states.timer.running = false;
+		states.setDefault();
 		pageManipulation.setTimerText('START');
 		pageManipulation.setCurrentTime();
 		pageManipulation.resetProgressBar();
@@ -46,7 +47,7 @@ export const timer = {
 
 	pause: () => {
 		timer.stop();
-		timer.toggleRunning();
+		states.timer.running = false;
 		pageManipulation.setTimerText('RESUME');
 	}
 };

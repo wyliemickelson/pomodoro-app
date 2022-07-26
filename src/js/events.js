@@ -33,7 +33,11 @@ export const events = {
 		timerBtn: () => {
 			if (states.timer.running) {
 				timer.pause();
-			} else {
+			} else if (states.timer.completed) {
+				timer.reset();
+				timer.start();
+			} 
+			else {
 				timer.start();
 			}
 		},
