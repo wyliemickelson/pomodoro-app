@@ -1,7 +1,9 @@
 import { pageManipulation } from './pageManipulation';
 import { states } from './states';
+import completionAudioPath from '/src/assets/audio/timer-complete.mp3';
 
-// const completeAudio = new Audio('/src/assets/audio/timer-complete.mp3');
+const completionAudio = new Audio(completionAudioPath);
+completionAudio.volume = 0.5;
 
 export const timer = {
 
@@ -27,6 +29,7 @@ export const timer = {
 			pageManipulation.setCurrentTime();
 
 			if (timeLeft <= 0) {
+				completionAudio.play();
 				timer.stop();
 				states.current.timer.completed = true;
 				states.current.timer.running = false;

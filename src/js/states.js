@@ -8,11 +8,10 @@ export let states = {
 		timer: {
 			type: {
 				name: 'pomodoro',
-				length: '1500',
+				length: 1500,
 				id: 'timer--1',
 			},
 			timeLeft: 1500,
-			timeLeftms: 1500 * 1000,
 			running: false,
 			completed: false,
 		},

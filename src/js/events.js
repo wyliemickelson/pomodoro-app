@@ -57,7 +57,6 @@ export const events = {
 			pageManipulation.setChoice(this.id, type);
 			if (type === 'timer') {
 				states.update();
-				timer.reset();
 			}
 		},
 
