@@ -33,12 +33,17 @@ export const pageManipulation = {
 	},
 
 	setCurrentTime: () => {
-		let seconds = states.current.timer.timeLeft % 60;
-		if (seconds < 10) {
-			seconds = '0' + seconds.toString();
-		}
-		let minutes = Math.floor(states.current.timer.timeLeft / 60);
-		timeLeft.textContent = `${minutes}:${seconds}`;
+		let seconds = states.current.timer.timeLeft;
+		let hours = Math.floor(seconds / 3600);
+		let minutes = Math.floor((seconds - (hours * 3600)) / 60);
+		seconds = seconds - (hours * 3600) - (minutes * 60);
+
+		if (seconds < 10) seconds = '0' + seconds;
+		if (minutes < 10) minutes = '0' + minutes;
+
+		let timeStr = `${minutes}:${seconds}`;
+		if (hours > 0) timeStr = `${hours}:${minutes}`;
+		timeLeft.textContent = timeStr;
 	},
 
 	setTimerText: (newText) => {
@@ -77,8 +82,6 @@ export const pageManipulation = {
 		pageManipulation.setFont();
 		pageManipulation.setTimerLengthInputs();
 		pageManipulation.setTimerType();
-		// timer.reset();
 		timer.load();
-		console.log(states.current);
 	}
 };

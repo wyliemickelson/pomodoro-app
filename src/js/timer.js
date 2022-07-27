@@ -37,6 +37,11 @@ export const timer = {
 	},
 
 	load: () => {
+		if (states.current.timer.timeLeft === 0) {
+			timer.reset();
+			return;
+		}
+
 		let timerText = (states.current.timer.timeLeft === states.current.timer.type.length) ? 'START' : 'RESUME';
 		pageManipulation.setTimerText(timerText);
 		pageManipulation.setCurrentTime();

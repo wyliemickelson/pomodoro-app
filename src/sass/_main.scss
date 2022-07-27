@@ -13,6 +13,8 @@
 }
 
 .timer_types {
+  width: 90%;
+  margin-inline: auto;
   background-color: $clr-pm-darkest;
   padding: 0.75rem;
   border-radius: 5rem;
@@ -42,7 +44,7 @@
 .timer {
   @include circle(300px, lighten($clr-pm-darkest, 10%));
   margin-inline: auto;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
   background: #091022;
   background: -moz-linear-gradient(-45deg, #091022 0%, #2D3367 81%, #30376F 100%);
   background: -webkit-linear-gradient(-45deg, #091022 0%, #2D3367 81%, #30376F 100%);

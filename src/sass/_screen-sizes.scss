@@ -13,8 +13,17 @@
     .timer_content {
       h1 {
         font-size: 85px;
+        line-height: 150px;
+      }
+
+      h3 {
+        letter-spacing: 15px;
       }
     }
+  }
+
+  .timer_types {
+    width: 100%;
   }
 
   .settings {
