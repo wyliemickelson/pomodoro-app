@@ -12,6 +12,7 @@ export let states = {
 				id: 'timer--1',
 			},
 			timeLeft: 1500,
+			timeLeftms: 1500 * 1000,
 			running: false,
 			completed: false,
 		},
@@ -41,7 +42,6 @@ export let states = {
 		settings.updateSettings();
 		pageManipulation.setAccentColor();
 		pageManipulation.setFont();
-		// states.setDefault();
 		timer.reset();
 
 		states.saveLocal();

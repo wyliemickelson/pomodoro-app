@@ -4,7 +4,7 @@ import { utilities } from './utilities';
 
 const settingsModal = document.getElementById('settings');
 const pageMask = document.getElementById('pageMask');
-const timeLeft = document.getElementById('timeLeft');
+const timeLeftText = document.getElementById('timeLeft');
 const timerText = document.getElementById('timerText');
 const progressBar = document.getElementById('progressBar');
 const pomodoroTimerLengthInput = document.getElementById('pomodoroTimerLengthInput');
@@ -25,25 +25,25 @@ export const pageManipulation = {
 		progressBar.style.background = 'var(--clr-accent-current)';
 	},
 
-	updateProgressBar: (progressValue, endValue) => {
+	updateProgressBar: (currentTime, endTime) => {
 		progressBar.style.background = `conic-gradient(
-      var(--clr-accent-current) ${progressValue * (360 / endValue)}deg,
-      hsl(234deg, 39%, 14%) ${progressValue * (360 / endValue)}deg
+      var(--clr-accent-current) ${currentTime * (360 / endTime)}deg,
+      hsl(234deg, 39%, 14%) ${currentTime * (360 / endTime)}deg
     )`;
 	},
 
-	setCurrentTime: () => {
-		let seconds = states.current.timer.timeLeft;
+	setCurrentTime: (seconds = states.current.timer.timeLeft) => {
 		let hours = Math.floor(seconds / 3600);
 		let minutes = Math.floor((seconds - (hours * 3600)) / 60);
 		seconds = seconds - (hours * 3600) - (minutes * 60);
 
 		if (seconds < 10) seconds = '0' + seconds;
 		if (minutes < 10) minutes = '0' + minutes;
+		if (hours < 10) hours = '0' + hours;
 
 		let timeStr = `${minutes}:${seconds}`;
 		if (hours > 0) timeStr = `${hours}:${minutes}`;
-		timeLeft.textContent = timeStr;
+		timeLeftText.textContent = timeStr;
 	},
 
 	setTimerText: (newText) => {

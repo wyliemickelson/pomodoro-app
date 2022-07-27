@@ -1,33 +1,32 @@
 import { pageManipulation } from './pageManipulation';
 import { states } from './states';
 
+// const completeAudio = new Audio('/src/assets/audio/timer-complete.mp3');
+
 export const timer = {
 
 	start: () => {
 		states.current.timer.running = true;
-
 		pageManipulation.setTimerText('PAUSE');
 
-		let endValueSeconds = states.current.timer.type.length;
-		let startValueSeconds = (endValueSeconds - states.current.timer.timeLeft);
-		let progressValue = startValueSeconds * 100;
-		let progressEndValue = endValueSeconds * 100;
 		let speed = 10;
-		let isSecond = true;
+		let endTime = new Date();
+		endTime.setSeconds(endTime.getSeconds() + states.current.timer.timeLeft);
 
 		window.mainTimer = setInterval(() => {
-			progressValue++;
-			isSecond = progressValue % 100 == 0;
 
-			if (isSecond) {
-				states.current.timer.timeLeft--;
-				states.saveLocal();
-			}
+			let currentTime = new Date();
+			let timerLength = states.current.timer.type.length * 1000;
+			let timeLeft = endTime - currentTime;
+			let startTime = (timerLength - timeLeft);
 
+			pageManipulation.updateProgressBar(startTime, timerLength);
+
+			states.current.timer.timeLeft = Math.ceil(timeLeft / 1000);
+			states.saveLocal();
 			pageManipulation.setCurrentTime();
-			pageManipulation.updateProgressBar(progressValue, progressEndValue);
 
-			if (progressValue == progressEndValue) {
+			if (timeLeft <= 0) {
 				timer.stop();
 				states.current.timer.completed = true;
 				states.current.timer.running = false;
