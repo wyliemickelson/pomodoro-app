@@ -129,27 +129,27 @@
       pointer-events: none;
     }
 
-    .font--1 {
+    #font--1 * {
       font-family: $ff-option-1;
     }
 
-    .font--2 {
+    #font--2 * {
       font-family: $ff-option-2;
     }
 
-    .font--3 {
+    #font--3 * {
       font-family: $ff-option-3;
     }
 
-    .color--1 {
+    #color--1 {
       background-color: $clr-accent-1;
     }
 
-    .color--2 {
+    #color--2 {
       background-color: $clr-accent-2;
     }
 
-    .color--3 {
+    #color--3 {
       background-color: $clr-accent-3;
     }
   }

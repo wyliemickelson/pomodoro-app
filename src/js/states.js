@@ -1,36 +1,60 @@
 import { pageManipulation } from './pageManipulation';
 import { settings } from './settings';
+import { timer } from './timer';
 
-export const states = {
-	timer: {
-		type: {
-			name: 'pomodoro',
-			length: '1500'
-		},
-		timeLeft: 1500,
-		running: false,
-		completed: false,
-	},
+export let states = {
 
-	settings: {
-		lengths: {
-			'pomodoro': 1500,
-			'short break': 300,
-			'long break': 900
+	current: {
+		timer: {
+			type: {
+				name: 'pomodoro',
+				length: '1500',
+				id: 'timer--1',
+			},
+			timeLeft: 1500,
+			running: false,
+			completed: false,
 		},
-		accentColor: 'rgb(248, 114, 114)',
-		font: '"Kumbh Sans", sans-serif',
+	
+		settings: {
+			lengths: {
+				'pomodoro': 1500,
+				'short break': 300,
+				'long break': 900
+			},
+			accentColor: {
+				id: 'color--1',
+				content: 'rgb(248, 114, 114)',
+			},
+			font: {
+				id: 'font--1',
+				content: '"Kumbh Sans", sans-serif',
+			}
+		},
 	},
 
 	update: () => {
 		settings.updateSettings();
+		states.setDefault();
 		pageManipulation.setAccentColor();
 		pageManipulation.setFont();
+		timer.reset();
+
+		localStorage.setObject('savedStates', states.current);
 	},
 
 	setDefault: () => {
-		states.timer.timeLeft = states.timer.type.length;
-		states.timer.running = false;
-		states.timer.completed = false;
+		states.current.timer.timeLeft = states.current.timer.type.length;
+		states.current.timer.running = false;
+		states.current.timer.completed = false;
+	},
+
+	retrieveLocalData: () => {
+		// localStorage.clear();
+		let savedStates = localStorage.getObject('savedStates');
+		if (savedStates !== null) {
+			states.current = savedStates;
+		}
+		pageManipulation.loadPage();
 	}
 };

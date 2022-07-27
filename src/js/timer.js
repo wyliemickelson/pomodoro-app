@@ -4,12 +4,12 @@ import { states } from './states';
 export const timer = {
 
 	start: () => {
-		states.timer.running = true;
+		states.current.timer.running = true;
 
 		pageManipulation.setTimerText('PAUSE');
 
-		let endValueSeconds = states.timer.type.length;
-		let startValueSeconds = (endValueSeconds - states.timer.timeLeft);
+		let endValueSeconds = states.current.timer.type.length;
+		let startValueSeconds = (endValueSeconds - states.current.timer.timeLeft);
 		let progressValue = startValueSeconds * 100;
 		let progressEndValue = endValueSeconds * 100;
 		let speed = 10;
@@ -19,15 +19,15 @@ export const timer = {
 			progressValue++;
 			isSecond = progressValue % 100 == 0;
 
-			if (isSecond) states.timer.timeLeft--;
+			if (isSecond) states.current.timer.timeLeft--;
 
 			pageManipulation.setCurrentTime();
 			pageManipulation.updateProgressBar(progressValue, progressEndValue);
 
 			if (progressValue == progressEndValue) {
 				timer.stop();
-				states.timer.completed = true;
-				states.timer.running = false;
+				states.current.timer.completed = true;
+				states.current.timer.running = false;
 				pageManipulation.setTimerText('RESTART');
 			}
 		}, speed);
@@ -47,7 +47,7 @@ export const timer = {
 
 	pause: () => {
 		timer.stop();
-		states.timer.running = false;
+		states.current.timer.running = false;
 		pageManipulation.setTimerText('RESUME');
 	}
 };

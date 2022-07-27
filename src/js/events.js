@@ -1,6 +1,5 @@
 import { pageManipulation } from './pageManipulation';
 import { timer } from './timer';
-import { settings } from './settings';
 import { states } from './states';
 
 const timerBtn = document.getElementById('timerBtn');
@@ -10,6 +9,9 @@ const showSettingsBtn = document.getElementById('showSettingsBtn');
 const exitSettingsBtn = document.getElementById('exitSettingsBtn');
 const incrementBtns = Array.from(document.querySelectorAll('.increment'));
 const timeInputs = Array.from(document.querySelectorAll('.timeInput'));
+const fontChoices = document.getElementById('fontChoices');
+const colorChoices = document.getElementById('colorChoices');
+const timerChoices = document.getElementById('timerChoices');
 
 export const events = {
 	setUpListeners: function() {
@@ -18,9 +20,9 @@ export const events = {
 		exitSettingsBtn.addEventListener('click', pageManipulation.toggleSettings);
 		timerBtn.addEventListener('click', this.handlers.timerBtn);
 		timerResetBtn.addEventListener('click', timer.reset);
-		this.addChoiceListeners(settings.fontChoices);
-		this.addChoiceListeners(settings.colorChoices);
-		this.addChoiceListeners(settings.timerChoices);
+		this.addChoiceListeners(fontChoices);
+		this.addChoiceListeners(colorChoices);
+		this.addChoiceListeners(timerChoices);
 
 		timeInputs.forEach(input => input.addEventListener('change', this.handlers.timeInput));
 		incrementBtns.forEach(btn => btn.addEventListener('click', this.handlers.incrementInputValue));
@@ -38,9 +40,9 @@ export const events = {
 		},
   
 		timerBtn: () => {
-			if (states.timer.running) {
+			if (states.current.timer.running) {
 				timer.pause();
-			} else if (states.timer.completed) {
+			} else if (states.current.timer.completed) {
 				timer.reset();
 				timer.start();
 			} 
@@ -50,9 +52,12 @@ export const events = {
 		},
   
 		choiceChange: function() {
-			pageManipulation.setSelectedChoice(this);
-			if (this.parentElement.id === 'timerChoices') {
-				settings.updateTimerType();
+			let choiceContainer = this.closest('.choices-container');
+			let type = choiceContainer.id.replace('Choices', '');
+			pageManipulation.setChoice(this.id, type);
+			if (type === 'timer') {
+				states.update();
+				timer.reset();
 			}
 		},
 

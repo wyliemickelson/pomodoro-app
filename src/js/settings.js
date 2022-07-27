@@ -1,45 +1,48 @@
 import { states } from './states';
-import { timer } from './timer';
+import { utilities } from './utilities';
 
 const pomodoroTimerLengthInput = document.getElementById('pomodoroTimerLengthInput');
 const shortBreakLengthInput = document.getElementById('shortBreakLengthInput');
 const longBreakLengthInput = document.getElementById('longBreakLengthInput');
 
 export const settings = {
-	fontChoices: document.getElementById('fontChoices'),
-	colorChoices: document.getElementById('colorChoices'),
-	timerChoices: document.getElementById('timerChoices'),
 
 	updateSettings: function() {
-		let newSettings = {
-			lengths: {
-				'pomodoro': minToSec(pomodoroTimerLengthInput.value),
-				'short break': minToSec(shortBreakLengthInput.value),
-				'long break': minToSec(longBreakLengthInput.value)
+		let accentColorEle = utilities.getSelectedChoice('color');
+		let fontEle = utilities.getSelectedChoice('font');
+		let timerType = utilities.getSelectedChoice('timer');
+		let accentColorStyle = getComputedStyle(accentColorEle).backgroundColor;
+		let fontStyle = getComputedStyle(fontEle).fontFamily;
+
+		let newStates = {
+			timer: {
+				type: {
+					name: timerType.textContent,
+					length: utilities.getTimerLength(timerType.textContent),
+					id: timerType.id,
+				},
+				timeLeft: states.current.timer.timeLeft,
+				running: states.current.timer.running,
+				completed: states.current.timer.completed,
 			},
-			accentColor: getComputedStyle(this.getSelectedChoice(this.colorChoices)).backgroundColor,
-			font: getComputedStyle(this.getSelectedChoice(this.fontChoices).querySelector('div')).fontFamily,
+		
+			settings: {
+				lengths: {
+					'pomodoro': utilities.minToSec(pomodoroTimerLengthInput.value),
+					'short break': utilities.minToSec(shortBreakLengthInput.value),
+					'long break': utilities.minToSec(longBreakLengthInput.value)
+				},
+				accentColor: {
+					id: accentColorEle.id,
+					content: accentColorStyle,
+				},
+				font: {
+					id: fontEle.id,
+					content: fontStyle,
+				},
+			},
 		};
 
-		states.settings = newSettings;
-		this.updateTimerType();
-	},
-
-	updateTimerType: () => {
-		const newTimerType = settings.getSelectedChoice(settings.timerChoices).textContent;
-		states.timer.type.name = newTimerType;
-		states.timer.type.length = states.settings.lengths[newTimerType];
-		states.timer.timeLeft = states.settings.lengths[newTimerType];
-		timer.reset();
-	},
-
-	getSelectedChoice: (container) => {
-		// container id must be named [type]Choices and selected choice [type]--selected
-		let type = container.id.replace('Choices', '');
-		return container.querySelector(`.${type}--selected`);
+		states.current = newStates;
 	},
 };
-
-function minToSec(min) {
-	return Number(min) * 60;
-}
