@@ -33,14 +33,18 @@ export let states = {
 		},
 	},
 
+	saveLocal: () => {
+		localStorage.setObject('savedStates', states.current);
+	},
+
 	update: () => {
 		settings.updateSettings();
-		states.setDefault();
 		pageManipulation.setAccentColor();
 		pageManipulation.setFont();
+		// states.setDefault();
 		timer.reset();
 
-		localStorage.setObject('savedStates', states.current);
+		states.saveLocal();
 	},
 
 	setDefault: () => {

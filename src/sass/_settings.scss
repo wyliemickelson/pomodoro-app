@@ -129,14 +129,17 @@
       pointer-events: none;
     }
 
+    #font--1,
     #font--1 * {
       font-family: $ff-option-1;
     }
 
+    #font--2,
     #font--2 * {
       font-family: $ff-option-2;
     }
 
+    #font--3,
     #font--3 * {
       font-family: $ff-option-3;
     }

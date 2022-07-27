@@ -77,6 +77,8 @@ export const pageManipulation = {
 		pageManipulation.setFont();
 		pageManipulation.setTimerLengthInputs();
 		pageManipulation.setTimerType();
-		timer.reset();
+		// timer.reset();
+		timer.load();
+		console.log(states.current);
 	}
 };

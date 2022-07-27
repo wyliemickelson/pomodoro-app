@@ -19,7 +19,10 @@ export const timer = {
 			progressValue++;
 			isSecond = progressValue % 100 == 0;
 
-			if (isSecond) states.current.timer.timeLeft--;
+			if (isSecond) {
+				states.current.timer.timeLeft--;
+				states.saveLocal();
+			}
 
 			pageManipulation.setCurrentTime();
 			pageManipulation.updateProgressBar(progressValue, progressEndValue);
@@ -33,21 +36,38 @@ export const timer = {
 		}, speed);
 	},
 
+	load: () => {
+		let timerText = (states.current.timer.timeLeft === states.current.timer.type.length) ? 'START' : 'RESUME';
+		pageManipulation.setTimerText(timerText);
+		pageManipulation.setCurrentTime();
+		states.current.timer.running = false;
+
+		let endLength = states.current.timer.type.length;
+		let remLength = states.current.timer.timeLeft;
+
+		if (endLength == remLength) {
+			pageManipulation.resetProgressBar();
+		} else {
+			pageManipulation.updateProgressBar(endLength - remLength, endLength);
+		}
+	},
+
 	stop: () => {
 		clearInterval(window.mainTimer);
+		states.current.timer.running = false;
+		states.saveLocal();
 	},
 
 	reset: () => {
 		timer.stop();
 		states.setDefault();
-		pageManipulation.setTimerText('START');
-		pageManipulation.setCurrentTime();
 		pageManipulation.resetProgressBar();
+		timer.load();
+		states.saveLocal();
 	},
 
 	pause: () => {
 		timer.stop();
-		states.current.timer.running = false;
 		pageManipulation.setTimerText('RESUME');
 	}
 };
