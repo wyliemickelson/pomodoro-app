@@ -14,6 +14,8 @@ export const settings = {
 		let accentColorStyle = getComputedStyle(accentColorEle).backgroundColor;
 		let fontStyle = getComputedStyle(fontEle).fontFamily;
 
+		let {timeLeft, running, completed} = states.current.timer;
+
 		let newStates = {
 			timer: {
 				type: {
@@ -21,9 +23,9 @@ export const settings = {
 					length: utilities.getTimerLength(timerType.textContent),
 					id: timerType.id,
 				},
-				timeLeft: states.current.timer.timeLeft,
-				running: states.current.timer.running,
-				completed: states.current.timer.completed,
+				timeLeft,
+				running,
+				completed,
 			},
 		
 			settings: {
